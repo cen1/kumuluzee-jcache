@@ -31,18 +31,17 @@ import com.kumuluz.ee.common.dependencies.EeExtensionDef;
 import com.kumuluz.ee.common.dependencies.EeExtensionGroup;
 import com.kumuluz.ee.common.wrapper.KumuluzServerWrapper;
 import com.kumuluz.ee.configuration.utils.ConfigurationUtil;
-import com.kumuluz.ee.jcache.caffeine.config.KumuluzEETypesafeConfigSupplier;
-import com.typesafe.config.Config;
+import com.kumuluz.ee.jcache.caffeine.config.JCacheCaffeineConfigSupplier;
 
 import java.util.logging.Logger;
 
 /**
- * KumuluzEE framework extension for JCache Caffeine
+ * KumuluzEE framework extension for JCache-Caffeine
  *
  * @author cen1
  * @since 1.0.0
  */
-@EeExtensionDef(name = "Caffeine", group = EeExtensionGroup.STREAMING)
+@EeExtensionDef(name = "JCache-Caffeine", group = EeExtensionGroup.CACHING)
 @EeComponentDependency(EeComponentType.CDI)
 public class CaffeineExtension implements Extension {
 
@@ -50,9 +49,9 @@ public class CaffeineExtension implements Extension {
 
     @Override
     public void init(KumuluzServerWrapper kumuluzServerWrapper, EeConfig eeConfig) {
-        log.info("Initialising KumuluzEE Caffeine extension.");
-        TypesafeConfigurator.setConfigSupplier(new KumuluzEETypesafeConfigSupplier());
-        log.info("Loaded Caffeine config");
+        log.info("Initialising KumuluzEE JCache-Caffeine extension.");
+        TypesafeConfigurator.setConfigSource(new JCacheCaffeineConfigSupplier());
+        log.info("Loaded JCache-Caffeine config");
     }
 
     @Override
