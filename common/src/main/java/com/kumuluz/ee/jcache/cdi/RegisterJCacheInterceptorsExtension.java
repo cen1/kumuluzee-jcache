@@ -1,3 +1,25 @@
+/*
+ *  Copyright (c) 2014-2019 Kumuluz and/or its affiliates
+ *  and other contributors as indicated by the @author tags and
+ *  the contributor list.
+ *
+ *  Licensed under the MIT License (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *  https://opensource.org/licenses/MIT
+
+ *
+ *  The software is provided "AS IS", WITHOUT WARRANTY OF ANY KIND, express or
+ *  implied, including but not limited to the warranties of merchantability,
+ *  fitness for a particular purpose and noninfringement. in no event shall the
+ *  authors or copyright holders be liable for any claim, damages or other
+ *  liability, whether in an action of contract, tort or otherwise, arising from,
+ *  out of or in connection with the software or the use or other dealings in the
+ *  software. See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
 package com.kumuluz.ee.jcache.cdi;
 
 import org.jsr107.ri.annotations.cdi.CachePutInterceptor;
@@ -15,11 +37,12 @@ import javax.enterprise.inject.spi.AfterBeanDiscovery;
 import javax.enterprise.inject.spi.AfterTypeDiscovery;
 import javax.enterprise.inject.spi.BeforeShutdown;
 import javax.enterprise.inject.spi.Extension;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.Properties;
 import java.util.logging.Logger;
 
+/**
+ * @author cen1
+ * @since 1.0.0
+ */
 public class RegisterJCacheInterceptorsExtension implements Extension {
 
     private static final Logger log = Logger.getLogger(RegisterJCacheInterceptorsExtension.class.getName());
@@ -27,6 +50,10 @@ public class RegisterJCacheInterceptorsExtension implements Extension {
     private CacheManager cacheManager;
     private CachingProvider cachingProvider;
 
+    /**
+     * See https://docs.jboss.org/cdi/api/2.0/javax/enterprise/inject/spi/AfterTypeDiscovery.html
+     * @param afterTypeDiscovery cdi event
+     */
     public void observeAfterTypeDiscovery(@Observes AfterTypeDiscovery afterTypeDiscovery) {
         afterTypeDiscovery.getInterceptors().add(CacheResultInterceptor.class);
         afterTypeDiscovery.getInterceptors().add(CacheRemoveEntryInterceptor.class);
@@ -34,6 +61,10 @@ public class RegisterJCacheInterceptorsExtension implements Extension {
         afterTypeDiscovery.getInterceptors().add(CachePutInterceptor.class);
     }
 
+    /**
+     * See https://docs.jboss.org/cdi/api/2.0/javax/enterprise/inject/spi/AfterBeanDiscovery.html
+     * @param afterBeanDiscovery cdi event
+     */
     public void observeAfterBeanDiscovery(@Observes AfterBeanDiscovery afterBeanDiscovery) {
 
         cachingProvider = Caching.getCachingProvider();

@@ -306,3 +306,9 @@ public class MyKeyGenerator implements CacheKeyGenerator {
     }
 }
 ```
+
+## License
+
+This project is under MIT license.
+
+Subset of files are under Apache license taken from `tomitribe/microprofile-jcache` project. See license headers in the respective source files.

@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) 2014-2017 Kumuluz and/or its affiliates
+ *  Copyright (c) 2014-2019 Kumuluz and/or its affiliates
  *  and other contributors as indicated by the @author tags and
  *  the contributor list.
  *
@@ -36,8 +36,6 @@ import com.kumuluz.ee.jcache.caffeine.config.JCacheCaffeineConfigSupplier;
 import java.util.logging.Logger;
 
 /**
- * KumuluzEE framework extension for JCache-Caffeine
- *
  * @author cen1
  * @since 1.0.0
  */
